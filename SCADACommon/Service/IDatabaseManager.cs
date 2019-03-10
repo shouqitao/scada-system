@@ -1,11 +1,9 @@
 ﻿using System.ServiceModel;
 using SCADACommon.Model;
 
-namespace SCADACommon.Service
-{
+namespace SCADACommon.Service {
     [ServiceContract(CallbackContract = typeof(IGuiCallback))]
-    public interface IDatabaseManager
-    {
+    public interface IDatabaseManager {
         [OperationContract(IsOneWay = true)]
         void SubscribeToTags();
 

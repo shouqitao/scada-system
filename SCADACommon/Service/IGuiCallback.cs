@@ -1,11 +1,9 @@
 ﻿using System.ServiceModel;
 using SCADACommon.Model;
 
-namespace SCADACommon.Service
-{
+namespace SCADACommon.Service {
     [ServiceContract]
-    public interface IGuiCallback
-    {
+    public interface IGuiCallback {
         [OperationContract(IsOneWay = true)]
         void OnAddTag(Tag tag);
 

@@ -1,27 +1,28 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace SCADACommon.Model
-{
+namespace SCADACommon.Model {
     [DataContract]
-    public class InputTag : Tag
-    {
-        [DataMember] private int _scanTime;
+    public class InputTag : Tag {
+        [DataMember]
+        private List<Alarm> _alarms;
 
-        [DataMember] private List<Alarm> _alarms;
+        [DataMember]
+        private bool _autoMode;
 
-        [DataMember] private bool _onScan;
+        [DataMember]
+        private FunctionType _functionType;
 
-        [DataMember] private bool _autoMode;
+        [DataMember]
+        private bool _onScan;
 
-        [DataMember] private FunctionType _functionType;
+        [DataMember]
+        private int _scanTime;
 
-        public InputTag()
-        {
-        }
+        public InputTag() { }
 
-        public InputTag(int scanTime, List<Alarm> alarms, bool onScan, bool autoMode, FunctionType functionType)
-        {
+        public InputTag(int scanTime, List<Alarm> alarms, bool onScan, bool autoMode,
+            FunctionType functionType) {
             _scanTime = scanTime;
             _alarms = alarms;
             _onScan = onScan;
@@ -31,8 +32,7 @@ namespace SCADACommon.Model
 
         public InputTag(string id, string description, SimulationDriver driver, string address, int scanTime,
             List<Alarm> alarms, bool onScan, bool autoMode, FunctionType functionType)
-            : base(id, description, driver, address)
-        {
+            : base(id, description, driver, address) {
             _scanTime = scanTime;
             _alarms = alarms;
             _onScan = onScan;
@@ -40,32 +40,27 @@ namespace SCADACommon.Model
             _functionType = functionType;
         }
 
-        public int ScanTime
-        {
+        public int ScanTime {
             get { return _scanTime; }
             set { _scanTime = value; }
         }
 
-        public List<Alarm> Alarms
-        {
+        public List<Alarm> Alarms {
             get { return _alarms; }
             set { _alarms = value; }
         }
 
-        public bool OnScan
-        {
+        public bool OnScan {
             get { return _onScan; }
             set { _onScan = value; }
         }
 
-        public bool AutoMode
-        {
+        public bool AutoMode {
             get { return _autoMode; }
             set { _autoMode = value; }
         }
 
-        public FunctionType FunctionType
-        {
+        public FunctionType FunctionType {
             get { return _functionType; }
             set { _functionType = value; }
         }

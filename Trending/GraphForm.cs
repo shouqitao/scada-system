@@ -6,18 +6,15 @@ using SCADACommon;
 using SCADACommon.Model;
 using SCADACommon.Service;
 
-namespace Trending
-{
+namespace Trending {
     [CallbackBehavior(UseSynchronizationContext = false)]
-    public partial class GraphForm : Form, IGuiCallback
-    {
+    public partial class GraphForm : Form, IGuiCallback {
+        private const string Series = "Graph";
         private readonly ITrending _proxy;
         private readonly Tag _tag;
         private int _xCoord;
-        private const string Series = "Graph";
 
-        public GraphForm(Tag tag)
-        {
+        public GraphForm(Tag tag) {
             InitializeComponent();
             var address = new Uri(ScadaConstants.TrendingUri);
             var binding = new NetTcpBinding {Security = {Mode = SecurityMode.None}};
@@ -33,37 +30,24 @@ namespace Trending
             chart.Series[Series].Points.AddXY(_xCoord++, tag.GetValue());
         }
 
-        public void OnAddTag(Tag tag)
-        {
-        }
+        public void OnAddTag(Tag tag) { }
 
-        public void OnRemoveTag(Tag tag)
-        {
-        }
+        public void OnRemoveTag(Tag tag) { }
 
-        public void OnUpdateTag(Tag tag)
-        {
-            if (chart.InvokeRequired)
-            {
+        public void OnUpdateTag(Tag tag) {
+            if (chart.InvokeRequired) {
                 var handler = new MainThreadHandler(OnUpdateTag);
                 BeginInvoke(handler, tag);
                 return;
             }
 
-            if (tag.Id == _tag.Id)
-            {
-                chart.Series[Series].Points.AddXY(_xCoord++, tag.GetValue());
-            }
+            if (tag.Id == _tag.Id) chart.Series[Series].Points.AddXY(_xCoord++, tag.GetValue());
         }
 
-        private void GraphForm_FormClosing(object sender, EventArgs e)
-        {
-            try
-            {
+        private void GraphForm_FormClosing(object sender, EventArgs e) {
+            try {
                 _proxy.UnsubscribeFromTags();
-            }
-            catch (Exception exception)
-            {
+            } catch (Exception exception) {
                 Console.WriteLine(exception);
             }
         }

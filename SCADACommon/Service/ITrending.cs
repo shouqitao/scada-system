@@ -1,11 +1,9 @@
 ﻿using System.ServiceModel;
 using SCADACommon.Model;
 
-namespace SCADACommon.Service
-{
+namespace SCADACommon.Service {
     [ServiceContract(CallbackContract = typeof(IGuiCallback))]
-    public interface ITrending
-    {
+    public interface ITrending {
         [OperationContract(IsOneWay = true)]
         void SubscribeToTags();
 

@@ -1,10 +1,8 @@
 ﻿using System.ServiceModel;
 
-namespace SCADACommon.Service
-{
+namespace SCADACommon.Service {
     [ServiceContract(CallbackContract = typeof(IAlarmCallback))]
-    public interface IAlarm
-    {
+    public interface IAlarm {
         [OperationContract(IsOneWay = true)]
         void SubscribeToAlarms();
 

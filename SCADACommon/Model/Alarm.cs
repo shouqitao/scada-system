@@ -1,41 +1,36 @@
 ﻿using System.Runtime.Serialization;
 
-namespace SCADACommon.Model
-{
+namespace SCADACommon.Model {
     [DataContract]
-    public class Alarm
-    {
-        [DataMember] private string _id;
+    public class Alarm {
+        [DataMember]
+        private double _highLimit;
 
-        [DataMember] private double _lowLimit;
+        [DataMember]
+        private string _id;
 
-        [DataMember] private double _highLimit;
+        [DataMember]
+        private double _lowLimit;
 
-        public Alarm()
-        {
-        }
+        public Alarm() { }
 
-        public Alarm(string id, double lowLimit, double highLimit)
-        {
+        public Alarm(string id, double lowLimit, double highLimit) {
             _id = id;
             _lowLimit = lowLimit;
             _highLimit = highLimit;
         }
 
-        public string Id
-        {
+        public string Id {
             get { return _id; }
             set { _id = value; }
         }
 
-        public double LowLimit
-        {
+        public double LowLimit {
             get { return _lowLimit; }
             set { _lowLimit = value; }
         }
 
-        public double HighLimit
-        {
+        public double HighLimit {
             get { return _highLimit; }
             set { _highLimit = value; }
         }

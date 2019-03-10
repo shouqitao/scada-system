@@ -1,10 +1,8 @@
 ﻿using System.ServiceModel;
 
-namespace SCADACommon.Service
-{
+namespace SCADACommon.Service {
     [ServiceContract]
-    public interface IAlarmCallback
-    {
+    public interface IAlarmCallback {
         [OperationContract(IsOneWay = true)]
         void LogAlarmToConsole(string alarmMessage);
     }
