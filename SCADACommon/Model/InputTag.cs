@@ -4,65 +4,40 @@ using System.Runtime.Serialization;
 namespace SCADACommon.Model {
     [DataContract]
     public class InputTag : Tag {
-        [DataMember]
-        private List<Alarm> _alarms;
-
-        [DataMember]
-        private bool _autoMode;
-
-        [DataMember]
-        private FunctionType _functionType;
-
-        [DataMember]
-        private bool _onScan;
-
-        [DataMember]
-        private int _scanTime;
-
         public InputTag() { }
 
         public InputTag(int scanTime, List<Alarm> alarms, bool onScan, bool autoMode,
             FunctionType functionType) {
-            _scanTime = scanTime;
-            _alarms = alarms;
-            _onScan = onScan;
-            _autoMode = autoMode;
-            _functionType = functionType;
+            ScanTime = scanTime;
+            Alarms = alarms;
+            OnScan = onScan;
+            AutoMode = autoMode;
+            FunctionType = functionType;
         }
 
         public InputTag(string id, string description, SimulationDriver driver, string address, int scanTime,
             List<Alarm> alarms, bool onScan, bool autoMode, FunctionType functionType)
             : base(id, description, driver, address) {
-            _scanTime = scanTime;
-            _alarms = alarms;
-            _onScan = onScan;
-            _autoMode = autoMode;
-            _functionType = functionType;
+            ScanTime = scanTime;
+            Alarms = alarms;
+            OnScan = onScan;
+            AutoMode = autoMode;
+            FunctionType = functionType;
         }
 
-        public int ScanTime {
-            get { return _scanTime; }
-            set { _scanTime = value; }
-        }
+        [DataMember]
+        public int ScanTime { get; set; }
 
-        public List<Alarm> Alarms {
-            get { return _alarms; }
-            set { _alarms = value; }
-        }
+        [DataMember]
+        public List<Alarm> Alarms { get; set; }
 
-        public bool OnScan {
-            get { return _onScan; }
-            set { _onScan = value; }
-        }
+        [DataMember]
+        public bool OnScan { get; set; }
 
-        public bool AutoMode {
-            get { return _autoMode; }
-            set { _autoMode = value; }
-        }
+        [DataMember]
+        public bool AutoMode { get; set; }
 
-        public FunctionType FunctionType {
-            get { return _functionType; }
-            set { _functionType = value; }
-        }
+        [DataMember]
+        public FunctionType FunctionType { get; set; }
     }
 }

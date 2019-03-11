@@ -14,57 +14,44 @@ namespace SCADACommon.Model {
     [KnownType(typeof(DigitalOutputTag))]
     public class Tag {
         [DataMember]
-        private string _address;
-
-        [DataMember]
-        private string _description;
-
-        [DataMember]
         private SimulationDriver _driver;
-
-        [DataMember]
-        private string _id;
 
         public Tag() { }
 
         public Tag(string id, string description, SimulationDriver driver, string address) {
-            _id = id;
-            _description = description;
+            Id = id;
+            Description = description;
             _driver = driver;
-            _address = address;
+            Address = address;
             Driver?.AddressValues.Add(new AddressValue(Address, 0));
         }
 
-        public string Id {
-            get { return _id; }
-            set { _id = value; }
-        }
+        [DataMember]
+        public string Id { get; set; }
 
-        public string Description {
-            get { return _description; }
-            set { _description = value; }
-        }
+        [DataMember]
+        public string Description { get; set; }
 
         public SimulationDriver Driver {
             get { return _driver; }
             set {
                 _driver = value;
-                AddressValue addressValue = Driver.AddressValues.FirstOrDefault(av => av.Address == Address);
-                if (addressValue == null) _driver.AddressValues.Add(new AddressValue(Address, 0));
+                var addressValue = Driver.AddressValues.FirstOrDefault(av => av.Address == Address);
+                if (addressValue == null)
+                    _driver.AddressValues.Add(new AddressValue(Address, 0));
             }
         }
 
-        public string Address {
-            get { return _address; }
-            set { _address = value; }
-        }
+        [DataMember]
+        public string Address { get; set; }
 
         public double GetValue() {
             return Driver?.AddressValues.First(av => av.Address == Address).Value ?? 0;
         }
 
         public void SetValue(double value) {
-            if (Driver != null) Driver.AddressValues.First(av => av.Address == Address).Value = value;
+            if (Driver != null)
+                Driver.AddressValues.First(av => av.Address == Address).Value = value;
         }
     }
 }

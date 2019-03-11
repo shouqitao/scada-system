@@ -4,30 +4,21 @@ using System.Runtime.Serialization;
 namespace SCADACommon.Model {
     [DataContract]
     public class AnalogInputTag : InputTag {
-        [DataMember]
-        private double _highLimit;
-
-        [DataMember]
-        private double _lowLimit;
-
-        [DataMember]
-        private string _units;
-
         public AnalogInputTag() { }
 
         public AnalogInputTag(double lowLimit, double highLimit, string units) {
-            _lowLimit = lowLimit;
-            _highLimit = highLimit;
-            _units = units;
+            LowLimit = lowLimit;
+            HighLimit = highLimit;
+            Units = units;
         }
 
         public AnalogInputTag(int scanTime, List<Alarm> alarms, bool onScan, bool autoMode,
             FunctionType functionType,
             double lowLimit, double highLimit, string units) : base(scanTime, alarms, onScan, autoMode,
             functionType) {
-            _lowLimit = lowLimit;
-            _highLimit = highLimit;
-            _units = units;
+            LowLimit = lowLimit;
+            HighLimit = highLimit;
+            Units = units;
         }
 
         public AnalogInputTag(string id, string description, SimulationDriver driver, string address,
@@ -36,24 +27,18 @@ namespace SCADACommon.Model {
             double highLimit,
             string units) : base(id, description, driver, address, scanTime, alarms, onScan, autoMode,
             functionType) {
-            _lowLimit = lowLimit;
-            _highLimit = highLimit;
-            _units = units;
+            LowLimit = lowLimit;
+            HighLimit = highLimit;
+            Units = units;
         }
 
-        public double LowLimit {
-            get { return _lowLimit; }
-            set { _lowLimit = value; }
-        }
+        [DataMember]
+        public double LowLimit { get; set; }
 
-        public double HighLimit {
-            get { return _highLimit; }
-            set { _highLimit = value; }
-        }
+        [DataMember]
+        public double HighLimit { get; set; }
 
-        public string Units {
-            get { return _units; }
-            set { _units = value; }
-        }
+        [DataMember]
+        public string Units { get; set; }
     }
 }
