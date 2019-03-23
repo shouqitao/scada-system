@@ -186,7 +186,7 @@ namespace SCADACore {
             service.Open();
             Console.WriteLine("WCFServer running...");
             Console.ReadLine();
-            SerialzieTags();
+            SerializeTags();
             AbortThreads();
             service.Close();
         }
@@ -203,7 +203,7 @@ namespace SCADACore {
             }
         }
 
-        private static void SerialzieTags() {
+        private static void SerializeTags() {
             using (var writer = new StreamWriter(ScadaConstants.ConfigPath)) {
                 var serializer = new XmlSerializer(typeof(List<Tag>));
                 serializer.Serialize(writer, _tags.Values.ToList());
