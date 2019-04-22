@@ -1,7 +1,7 @@
 ﻿namespace SCADACommon {
     public static class ScadaConstants {
         private const string
-            ServerIp = "192.168.1.127"; // Type ipconfig in command prompt and copy IPv4 address
+            ServerIp = "127.0.0.1"; // Type ipconfig in command prompt and copy IPv4 address
 
         public const string DatabaseManagerUri = "net.tcp://" + ServerIp + ":8081/IDatabaseManager";
         public const string AlarmUri = "net.tcp://" + ServerIp + ":8082/IAlarm";
